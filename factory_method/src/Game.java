@@ -1,5 +1,5 @@
 public class Game {
-    public static void main(String[] args) {  // Main method must be exactly like this
+    public static void main(String[] args) {
         Game game = new Game();  // Create an instance of Game
 
         // Create and display a CityMap
