@@ -1,4 +1,6 @@
-import java.util.Random;
+import javafx.scene.image.Image;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 
 public abstract class Map {
     protected int width;
@@ -24,13 +26,17 @@ public abstract class Map {
         }
     }
 
-    // Displays the map on the screen as a matrix of characters.
-    public void display() {
+    public void render(Canvas canvas) {
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        double tileWidth = canvas.getWidth() / width;
+        double tileHeight = canvas.getHeight() / height;
+
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                System.out.print(map[i][j].getCharacter() + " ");
+                Tile tile = map[i][j];
+                Image graphic = TileGraphicFactory.getTileGraphic(tile.getType());
+                gc.drawImage(graphic, j * tileWidth, i * tileHeight, tileWidth, tileHeight);
             }
-            System.out.println();
         }
     }
 }
